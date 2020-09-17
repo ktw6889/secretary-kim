@@ -33,7 +33,7 @@
 						<tr>
 							<td><c:out value="${list.id}"/></td>
 							<td> <a href="javascript:kangong.commontable.view('${list.id}');"> <c:out value="${list.tableCode}"/> </a></td>
-							<td><c:out value="${list.tableName}"/></td>
+							<td> <a href="javascript:kangong.commontable.inputEdit('${list.tableCode}');"> <c:out value="${list.tableName}"/></a></td>
 							<td> </td>
 							<td><c:out value="${list.tableDesc}"/></td>
 						</tr>
@@ -79,6 +79,7 @@
 <c:url var="listURL" value="/commontable/list.do"></c:url>
 <c:url var="editURL" value="/commontable/edit.do"></c:url>
 <c:url var="viewURL" value="/commontable/edit.do"></c:url>
+<c:url var="inputEditURL" value="/commontable/commonInputEdit.do"></c:url>
 
 <script>
 $( document ).ready(function() {
@@ -102,6 +103,11 @@ kangong.commontable = {
 			var paramObj ={};
 			paramObj.id =  id;
 			kangong.form.submitPost('${viewURL}',paramObj);
+		},
+	inputEdit :function (tableCode){
+			var paramObj ={};
+			paramObj.tableCode =  tableCode;
+			kangong.form.submitPost('${inputEditURL}',paramObj);
 		}
 }
 

@@ -136,6 +136,20 @@ kangong.commontable = {
 
 		//Json 데이터 합치기
 		var combineData = kangong.commontable.getCombineJson(resultData.resultList, columnData.columnList);
+		/*
+		console.log(combineData);
+		$.each(combineData.trList, function(index, trObj){
+			console.log("trObj",trObj);
+			$.each(trObj.tdList, function(ind, tdObj){
+				if(tdObj.inputType == "date"){
+					var date = new Date();
+					date.setTime(tdObj.columnValue);
+					tdObj.columnValue = kangong.commontable.formatDate(date);
+					console.log(tdObj.columnValue);
+				}
+			});
+		});
+		*/
 
 		//Column정보로 Tr템플릿 만들기
 		var templateItemTr = $.templates("#templateItemTr");
@@ -181,10 +195,31 @@ kangong.commontable = {
 							});
 							//coolumn순으로 sorting - columnOrder
 							tdArray = _.chain(tdArray).sortBy('columnOrder').value();
+							//date 값 셋팅
+							$.each(tdArray, function(ind, tdObj){
+								if(tdObj.inputType == "date"){
+									var date = new Date();
+									date.setTime(tdObj.columnValue);
+									tdObj.columnValue = kangong.commontable.formatDate(date);
+									console.log(tdObj.columnValue);
+								}
+							});
+
 							return {tdList : tdArray};
 						});
 
 						return{trList :tdColumnData };
+					},
+	formatDate :	function(date) {
+						var d = new Date(date);
+						month = '' + (d.getMonth() + 1);
+						day = '' + d.getDate();
+						year = d.getFullYear();
+
+						if (month.length < 2) month = '0' + month;
+						if (day.length < 2) day = '0' + day;
+
+						return [year, month, day].join('-');
 					}
 
 }

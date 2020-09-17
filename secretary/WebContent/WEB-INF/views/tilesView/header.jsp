@@ -17,6 +17,7 @@
 			 <li class="nav-item"><a href="#" class="nav-link">공지사항</a></li>
 			 <li class="nav-item"><a href="javascript:kangong.form.submitPost('${pageContext.request.contextPath}/board/list.do');" class="nav-link">게시판</a></li>
 			 <li class="nav-item"><a href="javascript:kangong.form.submitPost('${pageContext.request.contextPath}/user/list.do');" class="nav-link">사용자등록</a></li>
+			 <li class="nav-item"><a href="javascript:kangong.form.submitPost('${pageContext.request.contextPath}/commontable/list.do');" class="nav-link">공용테이블</a></li>
 		 </ul>
 	 </div>
  </nav>
